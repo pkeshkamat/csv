@@ -933,7 +933,11 @@ class CSV
 
       if @mode == :col
         headers.each.with_index do |header, i|
-          yield([header, @table.map {|row| row[header, i]}])
+          t=[]
+          @table.each{|y|
+            t.push(y[i])
+          }
+          yield([header, t])
         end
       else
         @table.each(&block)
